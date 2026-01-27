@@ -69,29 +69,36 @@ document.addEventListener('DOMContentLoaded', () => {
         emailjs.init("oZ9BdyjRCEDyb6Hoe");
     })();
 
-    document.getElementById('contact-form').addEventListener('submit', function (event) {
-        event.preventDefault();
+    const contactForm = document.getElementById('contact-form');
 
-        const btn = this.querySelector('button[type="submit"]');
-        const originalText = btn.innerText;
-        btn.innerText = 'Sending...';
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        const templateParams = {
-            name: this.from_name.value,
-            email: this.from_email.value,
-            message: this.message.value,
-            title: 'New Contact Form Submission'
-        };
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = 'Sending...';
 
-        emailjs.send('service_88wu61j', 'template_iglzxrk', templateParams)
-            .then(function () {
-                alert('Message sent successfully!');
-                btn.innerText = originalText;
-                document.getElementById('contact-form').reset();
-            }, function (error) {
-                alert('Failed to send message. Please try again.');
-                btn.innerText = originalText;
-                console.log('FAILED...', error);
-            });
-    });
+            // Use FormData to avoid clashing with built-in form properties
+            const formData = new FormData(this);
+            const templateParams = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message'),
+                title: 'New Contact Form Submission'
+            };
+
+            emailjs.send('service_e1wu49p', 'template_ti9mvog', templateParams)
+                .then(() => {
+                    alert('Message sent successfully!');
+                    btn.innerText = originalText;
+                    contactForm.reset();
+                })
+                .catch((error) => {
+                    alert('Failed to send message. Please try again.');
+                    btn.innerText = originalText;
+                    console.log('FAILED...', error);
+                });
+        });
+    }
 });
