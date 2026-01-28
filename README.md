@@ -1,5 +1,5 @@
 # Pranav N - Portfolio Website
-***Portfoilio -- [Pranav_N](https://portfolio-tan-pi-ztp5rj2p5o.vercel.app/)***
+***Portfolio -- [Pranav_N](https://portfolio-tan-pi-ztp5rj2p5o.vercel.app/)***
 
 A modern, dark-themed personal portfolio website built with HTML, CSS, and JavaScript.
 
