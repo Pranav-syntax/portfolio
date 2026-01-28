@@ -1,4 +1,4 @@
-# PRANAV N - Portfolio Website
+# Pranav N - Portfolio Website
 
 A modern, dark-themed personal portfolio website built with HTML, CSS, and JavaScript.
 
