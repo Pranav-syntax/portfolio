@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Mobile Navigation Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    }
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -8,7 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (targetElement) {
                 // If mobile menu is open, close it
-                navLinks.classList.remove('active');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                    if (hamburger) {
+                        hamburger.classList.remove('active');
+                    }
+                }
 
                 window.scrollTo({
                     top: targetElement.offsetTop - 70, // Header offset
@@ -18,13 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Mobile Navigation Toggle
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
         });
     }
 
